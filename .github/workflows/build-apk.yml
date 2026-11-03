@@ -20,12 +20,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install SDK
+      - name: Install Android SDK
         run: |
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          yes | sdkmanager --licenses
+          sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -40,4 +38,3 @@ jobs:
         with:
           name: ABHI-REMIX-Admin-APK
           path: app/build/outputs/apk/debug/app-debug.apk
-          
